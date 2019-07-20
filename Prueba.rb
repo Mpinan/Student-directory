@@ -2,6 +2,7 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   students = []
+  name = ""
   while name = gets.chomp.capitalize do
     break if name.empty?
     puts "What is your student cohort"
@@ -31,20 +32,20 @@ end
 def print(students)
   students.map do |student|
     student.map {|k,v| [k, v.to_sym]}
-  puts " #{student[:name]} (#{student[:cohort]} cohort), #{student[:country_of_birth]}"
+  puts " #{student[:name]}, (#{student[:cohort]} cohort), #{student[:country_of_birth]}"
   end
 end
 
-
 def cohort(students)
-  puts "What cohort would you like to print"
+
+  puts "Please, introduce a month to see a cohort or \"end\" to finish"
   cohort_input = ""
   months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     while cohort_input != months
       cohort_input = gets.chomp.capitalize
       students.select{ |s| s[:cohort] == cohort_input }.each {|student| puts student[:name] }
       break if cohort_input == "End"
-      puts "Please, introduce a month or \"end\" to finish" if cohort_input != months
+      puts "Please, introduce a month to see a cohort or \"end\" to finish" if cohort_input != months
     end
 end
 
